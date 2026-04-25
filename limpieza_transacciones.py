@@ -39,3 +39,5 @@ after_dup=len(trans)
 print("after dropna:",after_na,"(-",before-after_na,")")
 print("after duplicates:",after_dup,"(-",after_na-after_dup,")")
 print("final trans:",trans.shape)
+
+trans.to_csv(r"C:\Users\angel\OneDrive\Escritorio\trans_clean.csv",index=False)

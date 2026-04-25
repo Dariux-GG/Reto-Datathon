@@ -47,3 +47,5 @@ after_dup=len(convs)
 print("after dropna:",after_na,"(-",before_drop-after_na,")")
 print("after duplicates:",after_dup,"(-",after_na-after_dup,")")
 print("final convs:",convs.shape)
+
+convs.to_csv(r"C:\Users\angel\OneDrive\Escritorio\convs_clean.csv",index=False)

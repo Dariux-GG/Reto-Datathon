@@ -38,3 +38,5 @@ after_dup=len(clientes)
 print("after dropna:",after_na,"(-",before-after_na,")")
 print("after duplicates:",after_dup,"(-",after_na-after_dup,")")
 print("final clientes:",clientes.shape)
+
+clientes.to_csv(r"C:\Users\angel\OneDrive\Escritorio\clientes_clean.csv",index=False)

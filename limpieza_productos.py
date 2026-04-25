@@ -40,3 +40,5 @@ after_dup=len(productos)
 print("after dropna:",after_na,"(-",before-after_na,")")
 print("after duplicates:",after_dup,"(-",after_na-after_dup,")")
 print("final productos:",productos.shape)
+
+productos.to_csv(r"C:\Users\angel\OneDrive\Escritorio\productos_clean.csv",index=False)
