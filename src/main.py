@@ -87,6 +87,7 @@ RESPUESTAS:
 - Sé útil, claro y accionable
 - Prioriza consejos prácticos
 - No inventes datos
+- Si no tienes el dato, indica a el cliente como encontrarlo en la aplicación
 """
 
 def deepseek_chat(messages, api_key, modelo="deepseek-chat", temp=0.7):
