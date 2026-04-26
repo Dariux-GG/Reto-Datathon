@@ -1,4 +1,6 @@
 import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
 
 
 clientes=pd.read_csv(r"C:\Users\angel\OneDrive\Escritorio\clientes_clean.csv") 
@@ -103,3 +105,27 @@ ni destacan ni están muertos
 nudges para subirlos a cluster 0 o 1
 cross-sell
 """
+
+
+from sklearn.decomposition import PCA
+
+pca = PCA(n_components=2)
+coords = pca.fit_transform(X_scaled)
+
+df["pca1"] = coords[:, 0]
+df["pca2"] = coords[:, 1]
+
+colors = ["#4C72B0", "#DD8452", "#55A868", "#C44E52"]
+fig, ax = plt.subplots(figsize=(9, 6))
+
+for c in sorted(df["cluster"].unique()):
+    mask = df["cluster"] == c
+    ax.scatter(df.loc[mask, "pca1"], df.loc[mask, "pca2"],
+               label=f"Cluster {c}", alpha=0.5, s=30, color=colors[c])
+
+ax.set_title("Clusters (PCA 2D)")
+ax.set_xlabel(f"PC1 ({pca.explained_variance_ratio_[0]*100:.1f}% var)")
+ax.set_ylabel(f"PC2 ({pca.explained_variance_ratio_[1]*100:.1f}% var)")
+ax.legend()
+plt.tight_layout()
+plt.show()

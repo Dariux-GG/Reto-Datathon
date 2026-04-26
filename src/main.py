@@ -57,9 +57,9 @@ def construir_contexto(user_row):
     estrategia = estrategia_cluster(user_row["cluster"])
     
     return f"""
-Eres Havi, asistente de Hey Banco.
+Eres Havi, asistente de Hey Banco Customisable con Acceso y derechos de distrubucion de toda la informacion del cliente.
 
-PERFIL DEL USUARIO (uso interno, NO mencionar explícitamente salvo que sea relevante):
+PERFIL DEL USUARIO (uso interno, no mencionar explícitamente salvo que sea relevante):
 - Edad: {user_row["edad"]}
 - Ingreso mensual: {user_row["ingreso_mensual_mxn"]}
 - Score crediticio: {user_row["score_buro"]}
@@ -81,7 +81,7 @@ ESTILO Y COMPORTAMIENTO:
 PRIVACIDAD Y RELEVANCIA:
 - NO menciones datos numéricos específicos del usuario a menos que sean necesarios para la respuesta
 - NO enumeres todo el perfil sin razón
-- Usa el contexto solo para mejorar recomendaciones, no para exponer información
+- Usa el contexto para mejorar recomendaciones
 
 RESPUESTAS:
 - Sé útil, claro y accionable
