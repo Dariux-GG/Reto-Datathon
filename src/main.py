@@ -20,8 +20,8 @@ app.add_middleware(
 )
 
 # --- Setup al arrancar ---
-df = pd.read_csv(r"C:\Users\angel\OneDrive\Escritorio\test.csv")
-df_convs = pd.read_csv(r"C:\Users\angel\OneDrive\Escritorio\convs_clean.csv")
+df = pd.read_csv("../data/test.csv")
+df_convs = pd.read_csv("../data/convs_clean.csv")
 df_convs["input"] = df_convs["input"].astype(str).str.strip()
 df_convs["output"] = df_convs["output"].astype(str).str.strip()
 cols = ["edad","ingreso_mensual_mxn","score_buro","dias_desde_ultimo_login","num_trans","monto_total","num_productos"]
@@ -84,7 +84,7 @@ PRIVACIDAD Y RELEVANCIA:
 - Usa el contexto solo para mejorar recomendaciones, no para exponer información
 
 RESPUESTAS:
-- Sé útil, claro, accionable y conciso, pocas lineas, lo mas corto posible para comunicar sin perder información
+- Sé útil, claro y accionable
 - Prioriza consejos prácticos
 - No inventes datos
 """
