@@ -24,11 +24,11 @@ df = pd.read_csv(r"C:\Users\angel\OneDrive\Escritorio\test.csv")
 df_convs = pd.read_csv(r"C:\Users\angel\OneDrive\Escritorio\convs_clean.csv")
 df_convs["input"] = df_convs["input"].astype(str).str.strip()
 df_convs["output"] = df_convs["output"].astype(str).str.strip()
-cols = ["ingreso_mensual_mxn","score_buro","num_productos_activos","num_trans","monto_total","dias_desde_ultimo_login","satisfaccion_1_10"]
+cols = ["edad","ingreso_mensual_mxn","score_buro","dias_desde_ultimo_login","num_trans","monto_total","num_productos"]
 X = df[cols]
 scaler = StandardScaler()
 X_scaled = scaler.fit_transform(X)
-kmeans = KMeans(n_clusters=5, random_state=42)
+kmeans = KMeans(n_clusters=4, random_state=42, n_init=10)
 df["cluster"] = kmeans.fit_predict(X_scaled)
 
 
@@ -47,9 +47,10 @@ sesiones: dict = {}
 
 # Helpers 
 def estrategia_cluster(c):
-    if c == 0: return "Es un cliente premium, sugiere inversiones."
-    if c == 1: return "Cliente con bajo score, evita créditos agresivos."
-    if c == 4: return "Usuario inactivo, enfócate en reactivación."
+    if c == 0: return "Cliente High Value/Premium. Ingreso alto (~48k), score 714, monto ~600k. Enfócate en upsell, beneficios premium y retención."
+    if c == 1: return "Cliente joven hiperactivo (~26 años), muchas transacciones, ingreso medio-bajo. Empújalo a créditos e inversiones para subir ticket."
+    if c == 2: return "Cliente dormido/churn risk. Sin login ~106 días, pocas transacciones. Campaña de reactivación agresiva o descartarlo."
+    if c == 3: return "Cliente promedio/masivo. Comportamiento moderado en todo. Cross-sell y nudges para subirlo de cluster."
     return "Ofrece recomendaciones generales."
 
 def construir_contexto(user_row):
