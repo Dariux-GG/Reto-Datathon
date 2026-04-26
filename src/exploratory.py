@@ -129,3 +129,15 @@ ax.set_ylabel(f"PC2 ({pca.explained_variance_ratio_[1]*100:.1f}% var)")
 ax.legend()
 plt.tight_layout()
 plt.show()
+
+loadings = pd.DataFrame(pca.components_.T, index=cols, columns=["PC1", "PC2"])
+print(loadings.sort_values("PC1", key=abs, ascending=False))
+
+fig, axes = plt.subplots(1, 2, figsize=(10, 5))
+for i, pc in enumerate(["PC1", "PC2"]):
+    axes[i].barh(loadings.index, loadings[pc])
+    axes[i].axvline(0, color="black", linewidth=0.8)
+    axes[i].set_title(f"{pc} ({pca.explained_variance_ratio_[i]*100:.1f}% var)")
+    axes[i].set_xlabel("Loading")
+plt.tight_layout()
+plt.show()
